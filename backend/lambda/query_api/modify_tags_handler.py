@@ -1,104 +1,63 @@
 import json
 import boto3
-from urllib.parse import urlparse
-
-# Initialize DynamoDB
-dynamodb = boto3.resource('dynamodb')
-TABLE_NAME = 'BirdMediaMetadata'
-table = dynamodb.Table(TABLE_NAME)
+from boto3.dynamodb.conditions import Attr
 
 def lambda_handler(event, context):
-    """
-    Lambda function to add or remove bird tags from one or more files based on user input.
-
-    Expects JSON body like:
-    {
-        "url": [ list of S3 https urls ],
-        "operation": 1,  # 1 = add, 0 = remove
-        "tags": ["crow,1", "pigeon,2"]
-    }
-
-    Returns:
-        {
-            "status": "success",
-            "updated_files": [ list of file_ids updated ]
-        }
-    """
     try:
-        print("Incoming event:", json.dumps(event))
-        body = json.loads(event.get('body', '{}'))
-
+        body = json.loads(event["body"])
         urls = body.get("url", [])
-        operation = body.get("operation")
-        tags_raw = body.get("tags", [])
+        operation = body.get("operation")  # 1 = add, 0 = remove
+        tags = body.get("tags", [])
 
-        if operation not in [0, 1]:
-            raise ValueError("Invalid operation. Must be 0 (remove) or 1 (add).")
+        if not urls or operation not in [0, 1] or not tags:
+            return {
+                "statusCode": 400,
+                "body": json.dumps({"error": "Missing or invalid input"})
+            }
 
-        # Parse tags into a dict: {"crow": 1, "pigeon": 2}
-        tags_to_apply = {}
-        for tag_str in tags_raw:
-            if ',' in tag_str:
-                key, val = tag_str.split(',')
-                tags_to_apply[key.strip()] = int(val.strip())
+        tag_map = {}
+        for t in tags:
+            name, count = t.split(",")
+            tag_map[name.strip()] = int(count.strip())
 
-        updated_ids = []
+        dynamodb = boto3.resource("dynamodb")
+        table = dynamodb.Table("BirdMediaMetadata")
 
         for url in urls:
-            file_id = extract_file_id_from_url(url)
-            if not file_id:
-                continue
-
-            # Get item
-            response = table.get_item(Key={"file_id": file_id})
-            item = response.get("Item")
-            if not item:
-                continue
-
-            # Modify tags
-            existing_tags = item.get("tags", {})
-            if operation == 1:  # ADD
-                for tag, count in tags_to_apply.items():
-                    existing_tags[tag] = existing_tags.get(tag, 0) + count
-            else:  # REMOVE
-                for tag in tags_to_apply:
-                    if tag in existing_tags:
-                        del existing_tags[tag]
-
-            # Update item in table
-            table.update_item(
-                Key={"file_id": file_id},
-                UpdateExpression="SET tags = :t",
-                ExpressionAttributeValues={":t": existing_tags}
+            scan_resp = table.scan(
+                FilterExpression=Attr("thumbnail_url").eq(url)
             )
-            updated_ids.append(file_id)
+            items = scan_resp.get("Items", [])
+            if not items:
+                continue
+
+            item = items[0]
+            current_tags = item.get("tags", {})
+            updated_tags = current_tags.copy()
+
+            if operation == 1:
+                for tag, count in tag_map.items():
+                    updated_tags[tag] = updated_tags.get(tag, 0) + count
+            else:
+                for tag, count in tag_map.items():
+                    if tag in updated_tags:
+                        updated_tags[tag] = max(updated_tags[tag] - count, 0)
+                        if updated_tags[tag] == 0:
+                            del updated_tags[tag]
+
+            table.update_item(
+                Key={"file_id": item["file_id"]},
+                UpdateExpression="SET tags = :newtags",
+                ExpressionAttributeValues={":newtags": updated_tags}
+            )
 
         return {
             "statusCode": 200,
-            "body": json.dumps({
-                "status": "success",
-                "updated_files": updated_ids
-            }),
-            "headers": {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
-            }
+            "body": json.dumps({"message": "Tag update complete"})
         }
 
     except Exception as e:
-        print("Error:", str(e))
         return {
             "statusCode": 500,
             "body": json.dumps({"error": str(e)})
         }
-
-def extract_file_id_from_url(url):
-    """
-    Extracts the file_id from a thumbnail or original HTTPS URL.
-    Assumes file_id is the filename at the end of the S3 URL.
-    """
-    try:
-        path = urlparse(url).path
-        return os.path.basename(path).replace("-thumb", "").replace(".png", "").replace(".jpg", "").replace(".jpeg", "")
-    except Exception:
-        return None
