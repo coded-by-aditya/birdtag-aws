@@ -1,0 +1,75 @@
+import json
+import boto3
+
+# Initialize DynamoDB resource
+dynamodb = boto3.resource('dynamodb')
+TABLE_NAME = 'BirdMediaMetadata'
+table = dynamodb.Table(TABLE_NAME)
+
+def lambda_handler(event, context):
+    """
+    Lambda function to find files that contain at least one of the specified bird species.
+
+    Expects a POST request with JSON body like:
+    {
+        "species": ["crow", "myna"]
+    }
+
+    Returns:
+    {
+        "links": [
+            "https://bucket.s3.amazonaws.com/thumbnails/crow1-thumb.jpg",
+            "https://bucket.s3.amazonaws.com/videos/myna_clip.mp4"
+        ]
+    }
+    """
+    try:
+        print("Incoming event:", json.dumps(event))
+        body = json.loads(event.get('body', '{}'))
+
+        species_list = body.get("species", [])
+        if not isinstance(species_list, list):
+            raise ValueError("Field 'species' must be a list.")
+
+        # Scan DynamoDB for all items
+        response = table.scan()
+        items = response.get('Items', [])
+
+        matching_urls = []
+
+        for item in items:
+            tags = item.get('tags', {})
+
+            # Check if any requested species is present in tags
+            if any(species in tags and int(tags[species]) >= 1 for species in species_list):
+                if item['file_type'] == 'image':
+                    matching_urls.append(convert_s3_to_https(item['thumbnail_url']))
+                else:
+                    matching_urls.append(convert_s3_to_https(item['original_url']))
+
+        return {
+            'statusCode': 200,
+            'body': json.dumps({'links': matching_urls}),
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }
+
+    except Exception as e:
+        print("Error:", str(e))
+        return {
+            'statusCode': 500,
+            'body': json.dumps({'error': str(e)})
+        }
+
+def convert_s3_to_https(s3_url):
+    """
+    Converts s3://bucket/key to https://bucket.s3.amazonaws.com/key
+    """
+    if s3_url.startswith("s3://"):
+        parts = s3_url.replace("s3://", "").split("/", 1)
+        bucket = parts[0]
+        key = parts[1]
+        return f"https://{bucket}.s3.amazonaws.com/{key}"
+    return s3_url
