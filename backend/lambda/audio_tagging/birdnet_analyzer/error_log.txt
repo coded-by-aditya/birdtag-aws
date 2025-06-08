@@ -1,0 +1,981 @@
+[2025-06-06 14:36:35]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 75, in analyze
+    flist = _set_params(
+            ^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 231, in _set_params
+    cfg.SPECIES_LIST = read_lines(cfg.SPECIES_LIST_FILE)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 162, in read_lines
+    return Path(path).read_text(encoding="utf-8").splitlines() if path else []
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example'
+
+[2025-06-06 14:39:02]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-06 14:39:02]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-06 14:40:58]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-06 14:40:58]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-06 14:42:06]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-06 14:42:06]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-06 14:49:03]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example'
+
+[2025-06-06 14:49:03]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\outputs\\BirdNET_analysis_params.csv'
+
+[2025-06-06 14:49:32]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example'
+
+[2025-06-06 14:49:32]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\outputs\\BirdNET_analysis_params.csv'
+
+[2025-06-06 16:30:57]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example'
+
+[2025-06-06 16:30:57]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\outputs\\BirdNET_analysis_params.csv'
+
+[2025-06-06 16:33:26]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 689, in analyze_file
+    save_result_files(results, result_file_names, fpath)
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 238, in save_result_files
+    os.makedirs(cfg.OUTPUT_PATH, exist_ok=True)
+  File "<frozen os>", line 225, in makedirs
+FileExistsError: [WinError 183] Cannot create a file when that file already exists: 'D:\\Monash\\Cloud\\Assignment3\\BirdNET-Analyzer\\birdnet_analyzer\\outputs\\results.csv'
+
+[2025-06-06 16:33:26]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Monash\\Cloud\\Assignment3\\BirdNET-Analyzer\\birdnet_analyzer\\outputs\\results.csv\\BirdNET_analysis_params.csv'
+
+[2025-06-06 16:48:45]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 75, in analyze
+    flist = _set_params(
+            ^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 231, in _set_params
+    cfg.SPECIES_LIST = read_lines(cfg.SPECIES_LIST_FILE)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 162, in read_lines
+    return Path(path).read_text(encoding="utf-8").splitlines() if path else []
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example'
+
+[2025-06-06 16:49:29]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-06 16:49:29]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-06 16:56:18]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-06 16:56:18]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-06 16:56:52]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-06 16:56:52]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-06 16:57:09]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example'
+
+[2025-06-07 16:36:36]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-07 16:36:36]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-07 16:37:14]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-07 16:37:14]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
+[2025-06-07 16:38:47]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example'
+
+[2025-06-07 16:40:20]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example'
+
+[2025-06-07 16:40:20]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'outputs\\BirdNET_analysis_params.csv'
+
+[2025-06-07 16:41:19]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example'
+
+[2025-06-07 16:43:27]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example\\soundscape.wav': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example\\soundscape.wav'
+
+[2025-06-07 16:43:57]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'BirdNET-Analyzer\\birdnet_analyzer\\example\\soundscape.wav': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example\\soundscape.wav'
+
+[2025-06-07 16:43:57]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'BirdNET-Analyzer\\birdnet_analyzer\\example\\soundscape.wav\\BirdNET_analysis_params.csv'
+
+[2025-06-07 16:44:47]
+Traceback (most recent call last):
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 796, in get_duration
+    return sf.info(path).duration  # type: ignore
+           ^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 488, in info
+    return _SoundFileInfo(file, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 433, in __init__
+    with SoundFile(file) as f:
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'example/': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 618, in analyze_file
+    fileLengthSeconds = int(audio.get_audio_file_length(fpath) / cfg.AUDIO_SPEED)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\audio.py", line 64, in get_audio_file_length
+    return librosa.get_duration(filename=path, sr=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\librosa\core\audio.py", line 805, in get_duration
+    with audioread.audio_open(path) as fdesc:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\__init__.py", line 127, in audio_open
+    return BackendClass(path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rvaru\AppData\Local\Programs\Python\Python311\Lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+               ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/'
+
+[2025-06-07 16:44:47]
+Traceback (most recent call last):
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 27, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\cli.py", line 25, in main
+    analyze(**vars(args))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\core.py", line 128, in analyze
+    save_analysis_params(os.path.join(cfg.OUTPUT_PATH, cfg.ANALYSIS_PARAMS_FILENAME))
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\analyze\utils.py", line 26, in save_analysis_params
+    utils.save_params(
+  File "D:\Monash\Cloud\Assignment3\BirdNET-Analyzer\birdnet_analyzer\utils.py", line 309, in save_params
+    with open(file_path, "w", newline="") as paramsfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'example/BirdNET_analysis_params.csv'
+
