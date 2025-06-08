@@ -7,8 +7,7 @@ RUN yum install -y libGL ffmpeg
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app and model
+# Copy application code only (no model)
 COPY app.py .
-COPY model.pt .
 
 CMD ["app.lambda_handler"]

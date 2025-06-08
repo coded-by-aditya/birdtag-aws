@@ -6,13 +6,28 @@ import numpy as np
 from urllib.parse import unquote_plus
 from ultralytics import YOLO
 
+# AWS clients
 s3 = boto3.client('s3')
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('BirdnetTaggedFiles')
 
-# Load model once on cold start
-model = YOLO("model.pt")
-class_dict = model.names
+# S3 model location
+MODEL_BUCKET = "birdfile-models"
+MODEL_KEY = "models/yolo/model.pt"
+MODEL_LOCAL_PATH = "/tmp/model.pt"
+
+# Model will be loaded on cold start
+model = None
+class_dict = None
+
+def load_model():
+    global model, class_dict
+    if model is None:
+        if not os.path.exists(MODEL_LOCAL_PATH):
+            print("Downloading model from S3...")
+            s3.download_file(MODEL_BUCKET, MODEL_KEY, MODEL_LOCAL_PATH)
+        model = YOLO(MODEL_LOCAL_PATH)
+        class_dict = model.names
 
 def resize_image(image, width=128):
     h, w = image.shape[:2]
@@ -52,6 +67,8 @@ def tag_video(video_path):
     return species_tracker
 
 def lambda_handler(event, context):
+    load_model()
+
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
         key = unquote_plus(record['s3']['object']['key'])
@@ -64,7 +81,6 @@ def lambda_handler(event, context):
         thumbnail_url = None
         tags = {}
 
-        # Handle image files
         if file_type == "images":
             img = cv2.imread(tmp_input)
             if img is None:
@@ -98,7 +114,7 @@ def lambda_handler(event, context):
             "file_type": file_type,
             "original_url": f"s3://{bucket}/{key}",
             "tags": {k: int(v) for k, v in tags.items()},
-            "thumbnail_url": thumbnail_url  # Always included, None for videos/audio
+            "thumbnail_url": thumbnail_url
         }
 
         table.put_item(Item=item)
