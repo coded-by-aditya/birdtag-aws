@@ -15,9 +15,6 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-COPY birdnet_analyzer ./birdnet_analyzer
-ENV PYTHONPATH="/opt/BirdNET-Analyzer:${PYTHONPATH}"
-
 COPY lambda_handler.py ./
 
 CMD ["lambda_handler.lambda_handler"]
