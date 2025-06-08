@@ -2,6 +2,8 @@ import os
 import boto3
 import subprocess
 from collections import Counter
+import zipfile
+import sys
 
 os.environ["NUMBA_CACHE_DIR"] = "/tmp/numba_cache"
 
@@ -13,29 +15,43 @@ def download_from_s3(bucket, key, dest):
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     s3.download_file(bucket, key, dest)
 
+def download_and_extract_birdnet(bucket, key, extract_to):
+    s3 = boto3.client('s3')
+    zip_path = '/tmp/birdnet_analyzer.zip'
+    s3.download_file(bucket, key, zip_path)
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+
 def lambda_handler(event, context):
-    # Parse S3 event to get uploaded audio file info
+    # ---- Step 1: Download and extract BirdNET-Analyzer from S3 ----
+    birdnet_bucket = "birdnet-model-178"      # Set this
+    birdnet_zip_key = "birdnet_analyzer.zip"  # Set this
+    birdnet_dir = "/tmp/birdnet"
+    if not os.path.exists(birdnet_dir):
+        print("Downloading and extracting BirdNET-Analyzer...")
+        download_and_extract_birdnet(birdnet_bucket, birdnet_zip_key, birdnet_dir)
+    sys.path.insert(0, birdnet_dir)
+
+    # ---- Step 2: Prepare input/output dirs ----
     record = event["Records"][0]
     audio_bucket = record["s3"]["bucket"]["name"]
     audio_key = record["s3"]["object"]["key"]
 
-    # Set local temp file locations
     input_dir = "/tmp/input_audio"
     output_dir = "/tmp/output"
     os.makedirs(input_dir, exist_ok=True)
     os.makedirs(output_dir, exist_ok=True)
     audio_local_path = os.path.join(input_dir, "input.wav")
 
-    # Download the audio file from S3
     download_from_s3(audio_bucket, audio_key, audio_local_path)
     print("Completed audio download")
 
+    # ---- Step 3: Run BirdNET-Analyzer CLI ----
     print("Starting analysis")
-    # Run BirdNET-Analyzer CLI on the audio file
     result = subprocess.run(
         [
             "python3", "-m", "birdnet_analyzer.analyze",
-            input_dir, "-o", output_dir
+            input_dir, "-o", output_dir,
         ],
         capture_output=True, text=True
     )
@@ -43,7 +59,7 @@ def lambda_handler(event, context):
     print(result.stdout)
     print(result.stderr)
 
-    # Parse species counts from output file(s)
+    # ---- Step 4: Parse species counts from output file(s) ----
     species_counter = Counter()
     for fname in os.listdir(output_dir):
         if fname.endswith(".txt"):

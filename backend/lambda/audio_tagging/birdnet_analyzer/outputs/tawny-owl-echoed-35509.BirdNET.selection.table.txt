@@ -1,7 +1,0 @@
-Selection	View	Channel	Begin Time (s)	End Time (s)	Low Freq (Hz)	High Freq (Hz)	Common Name	Species Code	Confidence	Begin Path	File Offset (s)
-1	Spectrogram 1	1	0.0	3.0	0	12000.0	Tawny Owl	tawowl1	0.8243	birdnet_analyzer/example/tawny-owl-echoed-35509.wav	0.0
-2	Spectrogram 1	1	3.0	6.0	0	12000.0	Tawny Owl	tawowl1	0.9319	birdnet_analyzer/example/tawny-owl-echoed-35509.wav	3.0
-3	Spectrogram 1	1	6.0	9.0	0	12000.0	Tawny Owl	tawowl1	0.7062	birdnet_analyzer/example/tawny-owl-echoed-35509.wav	6.0
-4	Spectrogram 1	1	9.0	12.0	0	12000.0	Tawny Owl	tawowl1	0.9535	birdnet_analyzer/example/tawny-owl-echoed-35509.wav	9.0
-5	Spectrogram 1	1	12.0	15.0	0	12000.0	Tawny Owl	tawowl1	0.7409	birdnet_analyzer/example/tawny-owl-echoed-35509.wav	12.0
-6	Spectrogram 1	1	15.0	18.0	0	12000.0	Tawny Owl	tawowl1	0.8334	birdnet_analyzer/example/tawny-owl-echoed-35509.wav	15.0
