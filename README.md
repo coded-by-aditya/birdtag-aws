@@ -112,10 +112,10 @@ REACT_APP_COGNITO_CLIENT_ID=...
 - Set environment variables in deployment platform
 
 ## Team Members
-- **Aditya Mehrotra** – Backend Lead, Full-stack Integration, ML & Infrastructure
-- **Anmol Salwan** – Frontend & UI/UX Design, React Development
-- **Glenn Varghese George** – API Development, Testing, Model Integration
-- **Varun Kashyap** – System Architecture, Documentation, DevOps & Deployment
+- **Anmol Salwan** – AWS Infrastructure & DevOps: Set up S3, DynamoDB, IAM, Lambda triggers, SNS
+- **Glenn Varghese George** – Backend Integration: Lambda logic for thumbnail generation, model integration, tagging, and DB writes
+- **Aditya Mehrotra** – API & Query Engine: Developed query and tagging APIs (search, delete, modify), API Gateway integrations
+- **Varun Kashyap** – Frontend & Authentication: Cognito setup, login/signup flows, React UI for upload, query, and preview
 
 ## AI Acknowledgment
 See `AI_Acknowledgment.txt` for details on how AI tools were used ethically and responsibly in support of this project.
