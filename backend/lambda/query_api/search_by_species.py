@@ -1,27 +1,17 @@
 import json
 import boto3
 
-# Initialize DynamoDB resource
+# Initialize AWS clients
 dynamodb = boto3.resource('dynamodb')
+s3 = boto3.client('s3')
+
 TABLE_NAME = 'BirdMediaMetadata'
 table = dynamodb.Table(TABLE_NAME)
 
 def lambda_handler(event, context):
     """
-    Lambda function to find files that contain at least one of the specified bird species.
-
-    Expects a POST request with JSON body like:
-    {
-        "species": ["crow", "myna"]
-    }
-
-    Returns:
-    {
-        "links": [
-            "https://bucket.s3.amazonaws.com/thumbnails/crow1-thumb.jpg",
-            "https://bucket.s3.amazonaws.com/videos/myna_clip.mp4"
-        ]
-    }
+    Lambda function to find files that contain at least one of the specified bird species,
+    and return pre-signed URLs for matching items.
     """
     try:
         print("Incoming event:", json.dumps(event))
@@ -31,7 +21,6 @@ def lambda_handler(event, context):
         if not isinstance(species_list, list):
             raise ValueError("Field 'species' must be a list.")
 
-        # Scan DynamoDB for all items
         response = table.scan()
         items = response.get('Items', [])
 
@@ -40,12 +29,11 @@ def lambda_handler(event, context):
         for item in items:
             tags = item.get('tags', {})
 
-            # Check if any requested species is present in tags
             if any(species in tags and int(tags[species]) >= 1 for species in species_list):
-                if item['file_type'] == 'image':
-                    matching_urls.append(convert_s3_to_https(item['thumbnail_url']))
-                else:
-                    matching_urls.append(convert_s3_to_https(item['original_url']))
+                s3_url = item['thumbnail_url'] if item['file_type'] == 'image' else item['original_url']
+                signed_url = generate_presigned_url_from_s3_uri(s3_url)
+                if signed_url:
+                    matching_urls.append(signed_url)
 
         return {
             'statusCode': 200,
@@ -63,13 +51,20 @@ def lambda_handler(event, context):
             'body': json.dumps({'error': str(e)})
         }
 
-def convert_s3_to_https(s3_url):
+def generate_presigned_url_from_s3_uri(s3_uri):
     """
-    Converts s3://bucket/key to https://bucket.s3.amazonaws.com/key
+    Convert s3://bucket/key into a signed HTTPS URL
     """
-    if s3_url.startswith("s3://"):
-        parts = s3_url.replace("s3://", "").split("/", 1)
-        bucket = parts[0]
-        key = parts[1]
-        return f"https://{bucket}.s3.amazonaws.com/{key}"
-    return s3_url
+    try:
+        if s3_uri.startswith("s3://"):
+            parts = s3_uri.replace("s3://", "").split("/", 1)
+            bucket = parts[0]
+            key = parts[1]
+            return s3.generate_presigned_url(
+                ClientMethod='get_object',
+                Params={'Bucket': bucket, 'Key': key},
+                ExpiresIn=3600  # 1 hour
+            )
+    except Exception as e:
+        print(f"Error signing URL for {s3_uri}: {e}")
+    return None
